@@ -1,0 +1,47 @@
+{
+	"name": "o-complex",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"prepare": "husky install"
+	},
+	"dependencies": {
+		"commitizen": "^4.3.0",
+		"next": "14.2.1",
+		"react": "^18",
+		"react-dom": "^18",
+		"sass": "^1.75.0"
+	},
+	"devDependencies": {
+		"@next/eslint-plugin-next": "^14.1.0",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"@typescript-eslint/eslint-plugin": "^7.6.0",
+		"@typescript-eslint/parser": "^7.6.0",
+		"cz-conventional-changelog": "^3.3.0",
+		"eslint": "^8",
+		"eslint-config-next": "14.2.1",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-next": "^0.0.0",
+		"eslint-plugin-react": "^7.34.1",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.2",
+		"prettier": "3.2.5",
+		"typescript": "^5"
+	},
+	"lint-staged": {
+		"*.js": "eslint --cache --fix",
+		"*.{js,css,md}": "prettier --write"
+	},
+	"config": {
+		"commitizen": {
+			"path": "./node_modules/cz-conventional-changelog"
+		}
+	}
+}
