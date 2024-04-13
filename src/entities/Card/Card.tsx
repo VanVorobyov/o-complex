@@ -3,6 +3,7 @@ import styles from './Card.module.scss';
 import Image from 'next/image';
 import { Button } from '@/shared/ui/Button/Button';
 import { ICard } from '@/entities/Card/types';
+import { Counter } from '@/shared/ui/Counter/Counter';
 
 
 export const Card: FC<ICard> = ({
@@ -26,6 +27,8 @@ export const Card: FC<ICard> = ({
         <Button>
           <span>Купить</span>
         </Button>
+        
+        <Counter></Counter>
       </div>
     </>
   );
