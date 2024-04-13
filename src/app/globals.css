@@ -11,6 +11,9 @@
 html,
 body {
   height: 100%;
+  padding: 15px;
+  max-width: 1920px;
+  min-width: 320px;
 }
 
 body {
@@ -18,6 +21,7 @@ body {
   flex-direction: column;
   height: max-content;
   align-items: center;
+  justify-content: center;
   /* Синяя подсветка сливается с фоном */
   -webkit-tap-highlight-color: transparent;
   /* Предотвращаем появление контекстного меню на устройствах Apple */

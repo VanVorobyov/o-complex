@@ -1,11 +1,12 @@
 import { FC, useState } from 'react';
 import styles from './Card.module.scss';
-import { ICardProps } from '@/entities/Card/types';
 import Image from 'next/image';
 import { Button } from '@/shared/ui/Button/Button';
+import { ICard } from '@/entities/Card/types';
 
 
-export const Card: FC<ICardProps> = ({
+export const Card: FC<ICard> = ({
+  id,
   image_url = '',
   title = '',
   description = 'description, description',
@@ -17,7 +18,8 @@ export const Card: FC<ICardProps> = ({
   return (
     <>
       <div className={styles.card}>
-        <Image className={styles.image} src={image_url} alt={''} />
+        <Image width={281} height={366} priority={true}
+               className={styles.image} src={image_url} alt={''} />
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.description}>{description}</p>
         <p className={styles.price}>{price * counter}</p>
@@ -28,3 +30,4 @@ export const Card: FC<ICardProps> = ({
     </>
   );
 };
+
