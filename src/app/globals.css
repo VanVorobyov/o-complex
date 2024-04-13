@@ -4,6 +4,10 @@
 /* Подключение шрифтов  */
 @import url('../shared/assets/fonts/fonts.css');
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   height: 100%;
