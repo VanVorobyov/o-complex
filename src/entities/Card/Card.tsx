@@ -1,20 +1,25 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import styles from './Card.module.scss';
 import Image from 'next/image';
 import { Button } from '@/shared/ui/Button/Button';
-import { ICard } from '@/entities/Card/types';
+import { ICard, InBasket } from '@/entities/Card/types';
 import { Counter } from '@/shared/ui/Counter/Counter';
+import { ICounter } from '@/shared/ui/Counter/types';
 
 
-export const Card: FC<ICard> = ({
+export const Card: FC<ICard & ICounter & InBasket> = ({
   id,
   image_url = '',
   title = '',
   description = 'description, description',
-  price = 0
+  price = 0,
+  count = 1,
+  increase,
+  decrease,
+  handleInputChange,
+  isInBasket,
+  handleToBasket
 }) => {
-  
-  const [counter, setCounter] = useState(1);
   
   return (
     <>
@@ -23,12 +28,20 @@ export const Card: FC<ICard> = ({
                className={styles.image} src={image_url} alt={''} />
         <h2 className={styles.title}>{title}</h2>
         <p className={styles.description}>{description}</p>
-        <p className={styles.price}>{price * counter}</p>
-        <Button>
-          <span>Купить</span>
-        </Button>
+        <p className={styles.price}>{price * count}</p>
         
-        <Counter></Counter>
+        {isInBasket ? (
+          <Counter
+            count={count}
+            increase={increase}
+            decrease={decrease}
+            handleInputChange={handleInputChange}
+          ></Counter>
+        ) : (
+          <Button onClick={handleToBasket}>
+            <span>Купить</span>
+          </Button>
+        )}
       </div>
     </>
   );

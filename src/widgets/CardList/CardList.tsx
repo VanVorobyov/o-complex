@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import styles from './CardList.module.scss';
-import { Card } from '@/entities/Card/Card';
 import { ICard } from '@/entities/Card/types';
 import { ICardListProps } from '@/widgets/CardList/types';
+import { CardFeature } from '@/features/CardFeature/CardFeature';
 
 
 export const CardList: FC<ICardListProps> = ({ cards }) => {
@@ -10,14 +10,13 @@ export const CardList: FC<ICardListProps> = ({ cards }) => {
     <>
       <ul className={styles.cardlist}>
         {cards.map((card: ICard) => (
-          <Card
+          <CardFeature
             key={card.id}
             image_url={card.image_url}
             title={card.title}
             id={card.id}
             description={card.description}
-            price={card.price}
-          />
+            price={card.price} />
         ))}
       </ul>
     </>
