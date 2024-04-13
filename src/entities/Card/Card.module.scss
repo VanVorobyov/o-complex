@@ -1,0 +1,57 @@
+@import '@/shared/style/variables.scss';
+
+.card {
+	width: 300px;
+	max-height: 812px;
+	min-height: 812px;
+	padding: 9px 10px 8px;
+	border-radius: $--Border-radius-size;
+	background-color: $--Colors-white;
+	display: flex;
+	flex-direction: column;
+	border: none;
+}
+
+.image {
+	width: 100%;
+	height: 366px;
+	object-fit: cover;
+}
+
+.title,
+.description {
+	margin: 0;
+	font-family: $--Font;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0px;
+	text-align: center;
+	word-wrap: break-word;
+}
+
+.title {
+	font-size: $--Font-size-l;
+}
+
+.description {
+	font-size: $--Font-size-m;
+	flex: 1 0 auto;
+	text-align: start;
+}
+
+.price {
+	margin: 0 0 33px 0;
+	font-family: $--Font;
+	
+	font-size: $--Font-size-l;
+	flex: 0 1 auto;
+	text-align: center;
+	
+	&::before {
+		content: 'Цена: ';
+	}
+	
+	&::after {
+		content: '₽';
+	}
+}
