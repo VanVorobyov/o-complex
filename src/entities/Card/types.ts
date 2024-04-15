@@ -8,7 +8,7 @@ export interface ICard {
 }
 
 export type updateItem = {
-  updateItem: ({ ...item }: { id: number, title: string, count?: number, quantity?: number }) => void;
-  addItem: ({ ...item }: { id: number, title: string, count?: number, quantity?: number }) => void;
+  updateItem: ({ ...item }: { id: number, title: string, quantity?: number, price?: number, totalPrice?: number }) => void;
+  addItem: ({ ...item }: { id: number, title: string, quantity?: number, price?: number, totalPrice?: number }) => void;
   removeItem: (id: number) => void;
 }

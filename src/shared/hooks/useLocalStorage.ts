@@ -5,7 +5,7 @@ const useLocalStorage = (key: string, initialValue: any[]) => {
     localStorage.setItem(key, JSON.stringify(item));
   };
   
-  const updateItem = ({ ...item }: { id: number, title: string, count?: number, quantity?: number }) => {
+  const updateItem = ({ ...item }: { id: number, title: string, quantity?: number, total?: number }) => {
     const items = JSON.parse(localStorage.getItem(key) || '[]');
     const itemIndex = items.findIndex((i: any) => i.id === item.id);
     if (itemIndex !== -1) {
@@ -22,7 +22,13 @@ const useLocalStorage = (key: string, initialValue: any[]) => {
     localStorage.setItem(key, JSON.stringify(filteredItems));
   };
   
-  return { addItem, updateItem, removeItem };
+  const getItem = () => {
+    const items = JSON.parse(localStorage.getItem(key) || '[]');
+    return items;
+  };
+  
+  
+  return { addItem, updateItem, removeItem, getItem };
 };
 
 export default useLocalStorage;

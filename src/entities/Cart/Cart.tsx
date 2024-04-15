@@ -9,8 +9,9 @@ export const Cart: FC<ICartProps> = ({ items, total }) => {
       <ul className={styles.cartItems}>
         {items.map((item) => (
           <li key={item.id} className={styles.cartItem}>
-            <span className={styles.itemName}>{item.name}</span>
-            <span className={styles.itemPrice}>Цена: ${item.price}</span>
+            <span className={styles.itemName}>{item.title}</span>
+            <span className={styles.itemPrice}>Цена за 1 ед.: ${item.price}</span>
+            <span className={styles.itemQuantity}>Цена за {item.quantity}ед. : {item.totalPrice}</span>
             <span className={styles.itemQuantity}>Количество: {item.quantity}</span>
           </li>
         ))}
