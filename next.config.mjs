@@ -4,7 +4,7 @@
  */
 const nextConfig = {
   images: {
-    domains: ['get.wallhere.com', 'w.forfun.com', 'klike.net', 'luxoboi.com.ua']
+    domains: ['encrypted-tbn0.gstatic.com', 'encrypted-tbn2.gstatic.com', 'encrypted-tbn3.gstatic.com']
   }
 };
 

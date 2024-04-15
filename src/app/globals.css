@@ -10,10 +10,10 @@
 
 html,
 body {
-  height: 100%;
   padding: 15px;
   max-width: 1920px;
-  min-width: 320px;
+  min-width: 375px;
+  /*height: 100vh;*/
 }
 
 body {

@@ -12,7 +12,6 @@ export const CardFeature: FC<ICard> = ({
   
   const [count, setCount] = useState(1);
   const [isInBasket, setIsInBasket] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Состояние для отслеживания загрузки
   
   useEffect(() => {
     const savedCount = localStorage.getItem(`count-${id}`);
@@ -25,8 +24,6 @@ export const CardFeature: FC<ICard> = ({
     if (savedIsInBasket) {
       setIsInBasket(savedIsInBasket === 'true');
     }
-    
-    setIsLoading(false);
   }, [id]);
   
   const increase = () => {
@@ -77,10 +74,6 @@ export const CardFeature: FC<ICard> = ({
       localStorage.setItem(`count-${id}`, parsedValue.toString());
     }
   };
-  
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
   
   return (
     <>
