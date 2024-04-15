@@ -4,6 +4,7 @@ import { ICard } from '@/entities/Card/types';
 import { ICardListProps } from '@/widgets/CardList/types';
 import { CardFeature } from '@/features/CardFeature/CardFeature';
 import { fetchCardData } from '@/shared/api/api';
+import useLocalStorage from '@/shared/hooks/useLocalStorage';
 
 export const CardList: FC<ICardListProps> = () => {
   const [cards, setCards] = useState<ICard[]>([]);
@@ -11,16 +12,19 @@ export const CardList: FC<ICardListProps> = () => {
   const [fetching, setFetching] = useState<boolean>(true);
   const [totalCount, setTotalCount] = useState<number>(0);
   
+  const { addItem, updateItem, removeItem } = useLocalStorage('cartItems', []);
+  
+  
   useEffect(() => {
     if (fetching) {
-      fetchCardData(currentPage, 20).then(response => {
+      fetchCardData(currentPage, 3).then(response => {
         if (currentPage > 1) {
           setCards((prevCards) => [...prevCards, ...response.products]);
         } else {
           setCards(response.products);
         }
         setCurrentPAge(currentPage + 1);
-        setTotalCount(Number(response.total)); // можно использовать response.headers.['x-total-count'] если задано
+        setTotalCount(Number(response.total));
         
       })
         .finally(() => setFetching(false));
@@ -46,12 +50,6 @@ export const CardList: FC<ICardListProps> = () => {
     }
   };
   
-  console.log(`fetching `, fetching);
-  console.log(`cards.length `, cards.length);
-  console.log(`totalCount `, totalCount);
-  console.log(`fetching `, fetching);
-  
-  
   return (
     <ul className={styles.cardlist}>
       {cards.map((card, index) => (
@@ -62,9 +60,14 @@ export const CardList: FC<ICardListProps> = () => {
           id={card.id}
           description={card.description}
           price={card.price}
+          updateItem={updateItem}
+          addItem={addItem}
+          removeItem={removeItem}
         />
       ))}
       {fetching && <div>Loading...</div>}
     </ul>
   );
 };
+
+

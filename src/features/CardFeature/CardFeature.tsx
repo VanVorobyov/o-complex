@@ -1,36 +1,27 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useState } from 'react';
 import { Card } from '@/entities/Card/Card';
-import { ICard } from '@/entities/Card/types';
+import { ICard, updateItem } from '@/entities/Card/types';
 
-export const CardFeature: FC<ICard> = ({
+export const CardFeature: FC<ICard & updateItem> = ({
   id = 0,
   image_url = '',
   title = '',
   description = '',
-  price = 0
+  price = 0,
+  updateItem,
+  removeItem
 }) => {
+  
   
   const [count, setCount] = useState(1);
   const [isInBasket, setIsInBasket] = useState(false);
   
-  useEffect(() => {
-    const savedCount = localStorage.getItem(`count-${id}`);
-    const savedIsInBasket = localStorage.getItem(`isInBasket-${id}`);
-    
-    if (savedCount) {
-      setCount(Number(savedCount));
-    }
-    
-    if (savedIsInBasket) {
-      setIsInBasket(savedIsInBasket === 'true');
-    }
-  }, [id]);
   
   const increase = () => {
     if (count < 99999) {
       setCount((prevCount) => {
         const newCount = prevCount + 1;
-        localStorage.setItem(`count-${id}`, newCount.toString());
+        updateItem({ id, title, count: newCount, quantity: price * newCount });
         return newCount;
       });
     }
@@ -40,26 +31,30 @@ export const CardFeature: FC<ICard> = ({
     if (count > 1) {
       setCount((prevCount) => {
         const newCount = prevCount - 1;
-        localStorage.setItem(`count-${id}`, newCount.toString());
+        updateItem({ id, title, count: newCount, quantity: price * newCount });
         return newCount;
       });
     } else {
       setIsInBasket(false);
-      localStorage.setItem(`isInBasket-${id}`, 'false');
+      removeItem(id);
     }
   };
   
   const addToBasket = () => {
     setIsInBasket(true);
-    localStorage.setItem(`isInBasket-${id}`, 'true');
+    updateItem({ id, title, count: 1, quantity: price });
+    
   };
   
-  const handleInputChange = (event: { target: { value: string; }; }) => {
+  const handleInputChange = (event: {
+    target: {
+      value: string;
+    };
+  }) => {
     const value = event.target.value;
     
     if (value === '') {
       setCount(1);
-      localStorage.setItem(`count-${id}`, '1');
       return;
     }
     
@@ -71,7 +66,6 @@ export const CardFeature: FC<ICard> = ({
     
     if (!isNaN(parsedValue) && parsedValue >= 1) {
       setCount(parsedValue);
-      localStorage.setItem(`count-${id}`, parsedValue.toString());
     }
   };
   
