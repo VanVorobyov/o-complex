@@ -1,27 +1,20 @@
 @import '@/shared/style/variables.scss';
 
-.card {
+.cart {
 	width: 100%;
-	max-height: 812px;
-	min-height: 812px;
-	padding: 9px 10px 8px;
+	min-width: 300px;
+	max-width: 900px;
+	padding: 15px 20px;
 	border-radius: $--Border-radius-size;
 	background-color: $--Colors-white;
 	display: flex;
 	flex-direction: column;
+	gap: 10px;
 	border: none;
 }
 
-.image {
-	width: 100%;
-	height: 366px;
-	object-fit: cover;
-	object-position: center;
-	border-radius: $--Border-radius-size;
-}
-
-.title,
-.description {
+.title {
+	font-size: $--Font-size-l;
 	margin: 0;
 	font-family: $--Font;
 	font-weight: 400;
@@ -32,23 +25,64 @@
 	
 }
 
-.title {
-	font-size: $--Font-size-l;
+.cartItems {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 	overflow: hidden;
-	max-height: 44px;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	display: grid;
+	gap: 10px;
 }
 
-.description {
-	max-height: 220px;
-	font-size: $--Font-size-m;
-	flex: 1 0 auto;
-	text-align: start;
-	overflow: scroll;
-	scrollbar-width: none;
-	-ms-overflow-style: none;
+.cartItem {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: grid;
+	grid-template-columns: minmax(150px, 7fr) minmax(min-content, 1fr) minmax(min-content, 2fr);
+	align-items: center;
+	gap: 10px;
+	
+	
 }
+
+
+.itemText {
+	margin: 0;
+	font-size: $--Font-size-m;
+	font-family: $--Font;
+	font-weight: 400;
+	line-height: normal;
+	letter-spacing: 0px;
+	word-wrap: break-word;
+	overflow: hidden;
+	text-align: end;
+	
+	&:first-child {
+		text-align: start;
+	}
+	
+}
+
+.total {
+	margin: 10px;
+	font-family: $--Font;
+	font-size: $--Font-size-l;
+	flex: 0 1 auto;
+	text-align: end;
+	
+	&::before {
+		content: 'Итого: ';
+	}
+	
+	&::after {
+		content: '₽';
+	}
+}
+
 
 .price {
 	margin: 15px 0 33px 0;
@@ -65,4 +99,9 @@
 	&::after {
 		content: '₽';
 	}
+}
+
+.button {
+	display: flex;
+	gap: 10px;
 }
